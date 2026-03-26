@@ -1,6 +1,14 @@
 import React from 'react';
 import { Section, SectionStack } from '../components/Section';
 import { fontFamilyDownloads } from '../data/fontDownloads';
+import {
+  TYPE_PRIMITIVES,
+  SHOPIFY_TYPE_ROLES,
+  buildShopifyRootCss,
+  GOOGLE_FONTS_HREF,
+  resolveRoleStyle,
+  FLUID_DISPLAY,
+} from '../data/shopifyTypeSystem';
 
 const zipBtnClass =
   'inline-flex items-center justify-center rounded-md border border-primary bg-primary px-4 py-2 text-small font-medium text-white hover:bg-primary-dark transition-colors';
@@ -206,6 +214,131 @@ const Typography = () => {
                   </ul>
                 </div>
               </div>
+            </div>
+
+            <div className="bg-white p-6 rounded-lg shadow-md border-t-4 border-primary">
+              <h3 className="text-h3 mb-2">Shopify storefront type system</h3>
+              <p className="text-lead text-gray-600 mb-2 max-w-3xl">
+                Use this scale in Online Store 2.0 themes (Dawn and derivatives): define CSS variables once,
+                then map section settings and Liquid templates to semantic roles. Base is{' '}
+                <code className="text-small bg-gray-100 px-1 rounded">16px</code> (
+                <code className="text-small bg-gray-100 px-1 rounded">1rem</code>).
+              </p>
+              <p className="text-body text-gray-600 mb-6 max-w-3xl">
+                Hero display uses fluid type: <code className="text-small bg-gray-100 px-1 rounded">{FLUID_DISPLAY.clamp}</code>
+                . Product titles use a clamp between card-sized and full PDP heading. All tokens live in{' '}
+                <code className="text-small bg-gray-100 px-1 rounded">src/data/shopifyTypeSystem.js</code> for a single source of truth.
+              </p>
+
+              <h4 className="text-h4 mb-3 text-primary">Load fonts in theme.liquid</h4>
+              <pre className="text-small bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto whitespace-pre-wrap mb-8">
+{`<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="${GOOGLE_FONTS_HREF}" rel="stylesheet">`}
+              </pre>
+
+              <h4 className="text-h4 mb-3 text-primary">Primitive scale</h4>
+              <p className="text-small text-gray-600 mb-3">
+                Step tokens for custom components. Variables:{' '}
+                <code className="bg-gray-100 px-1 rounded">--tt-type-{'{id}'}-size</code>,{' '}
+                <code className="bg-gray-100 px-1 rounded">--tt-type-{'{id}'}-leading</code>, optional{' '}
+                <code className="bg-gray-100 px-1 rounded">-tracking</code>.
+              </p>
+              <div className="overflow-x-auto mb-8 rounded-lg border border-gray-200">
+                <table className="min-w-full text-left text-small">
+                  <thead className="bg-gray-50 text-gray-700 font-semibold">
+                    <tr>
+                      <th className="px-4 py-3">ID</th>
+                      <th className="px-4 py-3">Label</th>
+                      <th className="px-4 py-3">Size</th>
+                      <th className="px-4 py-3">Leading</th>
+                      <th className="px-4 py-3">Default font</th>
+                      <th className="px-4 py-3">Note</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-100">
+                    {TYPE_PRIMITIVES.map((p) => (
+                      <tr key={p.id} className="bg-white">
+                        <td className="px-4 py-2.5 font-mono text-xs">{p.id}</td>
+                        <td className="px-4 py-2.5">{p.label}</td>
+                        <td className="px-4 py-2.5">
+                          {p.px}px / {p.rem}
+                        </td>
+                        <td className="px-4 py-2.5">{p.lineHeight}</td>
+                        <td className="px-4 py-2.5 capitalize">{p.defaultFamily}</td>
+                        <td className="px-4 py-2.5 text-gray-600 max-w-md">{p.note}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              <h4 className="text-h4 mb-3 text-primary">Semantic roles (store UI)</h4>
+              <p className="text-small text-gray-600 mb-3">
+                Each role exposes <code className="bg-gray-100 px-1 rounded">--tt-role-{'{id}'}-*</code> variables
+                (family, size, weight, leading, tracking; plus transform, decoration, opacity when needed).
+              </p>
+              <div className="overflow-x-auto mb-8 rounded-lg border border-gray-200">
+                <table className="min-w-full text-left text-small">
+                  <thead className="bg-gray-50 text-gray-700 font-semibold">
+                    <tr>
+                      <th className="px-4 py-3">Role</th>
+                      <th className="px-4 py-3">In Shopify</th>
+                      <th className="px-4 py-3">Token</th>
+                      <th className="px-4 py-3">Family / weight</th>
+                      <th className="px-4 py-3 min-w-[12rem]">Preview</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-100">
+                    {SHOPIFY_TYPE_ROLES.map((role) => (
+                      <tr key={role.id} className="bg-white">
+                        <td className="px-4 py-2.5 font-medium text-gray-900">{role.name}</td>
+                        <td className="px-4 py-2.5 text-gray-600 max-w-xs">{role.shopifyContext}</td>
+                        <td className="px-4 py-2.5 font-mono text-xs whitespace-nowrap">
+                          {role.fluid
+                            ? `${role.primitive} · fluid`
+                            : role.sizeClamp
+                              ? `${role.primitive} · clamp`
+                              : role.primitive}
+                        </td>
+                        <td className="px-4 py-2.5 capitalize">
+                          {role.family} {role.weight}
+                        </td>
+                        <td className="px-4 py-2.5 align-middle">
+                          <span className="block truncate max-w-[14rem]" style={resolveRoleStyle(role)}>
+                            {role.id === 'price-compare' ? '$48.00' : 'TeeTuner Studio Tee'}
+                          </span>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              <h4 className="text-h4 mb-3 text-primary">:root variables (paste into theme CSS)</h4>
+              <pre className="text-small bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto whitespace-pre-wrap mb-6">
+                {buildShopifyRootCss()}
+              </pre>
+
+              <h4 className="text-h4 mb-3 text-primary">Example: map a role in CSS</h4>
+              <pre className="text-small bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto whitespace-pre-wrap">
+{`.product__title,
+.card__heading {
+  font-family: var(--tt-role-product-title-family);
+  font-size: var(--tt-role-product-title-size);
+  font-weight: var(--tt-role-product-title-weight);
+  line-height: var(--tt-role-product-title-leading);
+  letter-spacing: var(--tt-role-product-title-tracking);
+}
+
+.price--compare {
+  font-family: var(--tt-role-price-compare-family);
+  font-size: var(--tt-role-price-compare-size);
+  font-weight: var(--tt-role-price-compare-weight);
+  text-decoration: var(--tt-role-price-compare-decoration);
+  opacity: var(--tt-role-price-compare-opacity);
+}`}
+              </pre>
             </div>
           </SectionStack>
         </SectionStack>
