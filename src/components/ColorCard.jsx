@@ -19,7 +19,7 @@ const ColorCard = ({ color }) => {
     <Card className="overflow-hidden">
       <button
         onClick={() => copyToClipboard(color.hex, 'HEX')}
-        className="w-full h-32 relative focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-inset"
+        className="w-full h-32 relative focus:outline-none focus:ring-2 focus:ring-primary focus:ring-inset"
         style={{ backgroundColor: color.hex }}
       >
         {copied && (
@@ -33,20 +33,20 @@ const ColorCard = ({ color }) => {
           <div className="flex items-center justify-between">
             <span className="text-body font-medium">{color.name}</span>
             <code
-              className="text-body cursor-pointer hover:text-blue-600"
+              className="text-body cursor-pointer hover:text-primary"
               onClick={() => copyToClipboard(color.hex, 'HEX')}
             >
               {color.hex}
             </code>
           </div>
           <div
-            className="text-body text-gray-600 cursor-pointer hover:text-blue-600"
+            className="text-body text-gray-600 cursor-pointer hover:text-primary"
             onClick={() => copyToClipboard(color.cmyk, 'CMYK')}
           >
             CMYK: {color.cmyk}
           </div>
           <div
-            className="text-body text-gray-600 cursor-pointer hover:text-blue-600"
+            className="text-body text-gray-600 cursor-pointer hover:text-primary"
             onClick={() => copyToClipboard(color.pantone, 'Pantone')}
           >
             Pantone: {color.pantone}

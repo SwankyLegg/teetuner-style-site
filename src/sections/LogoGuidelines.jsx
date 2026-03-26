@@ -8,7 +8,7 @@ export const LogoGuidelines = () => (
       <div className="bg-white p-6 rounded-lg shadow-md">
         <h4 className="text-h4 mb-4 text-primary">Do's</h4>
         <ul className="list-disc pl-5 space-y-2 text-body">
-          <li>Use the primary logo on light backgrounds when possible</li>
+          <li>Use the primary wordmark on light backgrounds and the inverse wordmark on dark surfaces</li>
           <li>Maintain clear space around the logo</li>
           <li>Use approved color combinations</li>
           <li>Scale the logo proportionally</li>

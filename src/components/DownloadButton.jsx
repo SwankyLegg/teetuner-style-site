@@ -21,7 +21,7 @@ export const DownloadButton = ({ files, zipName, variant = 'primary', children }
   };
 
   const buttonClasses = {
-    primary: 'bg-blue-600 hover:bg-blue-700',
+    primary: 'bg-primary hover:bg-primary-dark',
     secondary: 'bg-indigo-600 hover:bg-indigo-700',
   };
 

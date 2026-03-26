@@ -12,7 +12,7 @@ const GetFont = ({ fontName }) => {
       href={fontUrls[fontName]}
       target="_blank"
       rel="noopener noreferrer"
-      className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 hover:underline transition-colors"
+      className="inline-flex items-center gap-2 text-primary hover:text-primary-dark hover:underline transition-colors"
     >
       <span>Get Font</span>
       <ArrowTopRightOnSquareIcon className="h-4 w-4" />

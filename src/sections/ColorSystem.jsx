@@ -6,7 +6,10 @@ export const ColorSystem = () => (
   <Section>
     <div>
       <h2 className="text-h2">Color System</h2>
-      <p className="text-lead text-gray-600 mt-2">Our color system is built on a sophisticated monochromatic palette that ensures consistency and accessibility across all brand touchpoints.</p>
+      <p className="text-lead text-gray-600 mt-2">
+        TeeTuner colors center on signature green from the mark, balanced with neutral grayscale for interfaces,
+        typography, and layouts across product and marketing.
+      </p>
     </div>
 
     <MonochromaticPalette />

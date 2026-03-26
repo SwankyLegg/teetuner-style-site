@@ -6,6 +6,12 @@ export default {
   ],
   theme: {
     extend: {
+      colors: {
+        primary: {
+          DEFAULT: '#1D4934',
+          dark: '#163828',
+        },
+      },
       fontFamily: {
         'merriweather': ['Merriweather', 'serif'],
         'merriweather-sans': ['Merriweather Sans', 'sans-serif'],

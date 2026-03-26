@@ -1,27 +1,27 @@
-# Vesta Buildworks Brand Guidelines
+# TeeTuner brand guidelines
 
-A modern, interactive web application that serves as the central hub for Vesta Buildworks' brand assets and guidelines. Built with React and Vite, this application provides easy access to logos, typography, color palettes, and brand usage guidelines.
+A modern, interactive web application that serves as the central hub for TeeTuner brand assets and guidelines. Built with React and Vite, it provides easy access to logos, typography, color palettes, and usage notes.
 
-🌐 **[View Live Site](https://swankylegg.github.io/vesta-buildworks/)**
+Update the live URL below after you publish to GitHub Pages (or another host).
+
+**View live site:** `https://<your-username>.github.io/teetuner-style-site/`
 
 ## Features
 
-- 🎨 Interactive color palette showcase
-- 🖼️ Logo downloads in various formats (clicking any color will copy to keyboard)
-- 📝 Typography guidelines and font downloads
-- 💫 Brand values and usage guidelines
-- 📱 Responsive design for all devices
+- Interactive color palette showcase
+- Logo previews and SVG downloads (click any color swatch or value to copy)
+- Typography guidelines and font references
+- Brand values and logo usage guidelines
+- Responsive layout
 
-## Tech Stack
+## Tech stack
 
 - React 18
 - Vite
 - Tailwind CSS
-- Radix UI Components
-- JSZip for asset downloads
-- File-Saver for download handling
+- Radix UI components
 
-## Getting Started
+## Getting started
 
 ### Prerequisites
 
@@ -30,70 +30,56 @@ A modern, interactive web application that serves as the central hub for Vesta B
 
 ### Installation
 
-1. Clone the repository:
-
-```bash
-git clone https://github.com/your-username/vesta-buildworks.git
-cd vesta-buildworks
-```
+1. Clone the repository and open the project directory.
 
 2. Install dependencies:
 
 ```bash
 npm install
-# or
-yarn install
 ```
 
 3. Start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
 ```
 
-The application will be available at `http://localhost:5173`
+The app is available at the URL Vite prints (with this repo’s base path, typically `http://localhost:5173/teetuner-style-site/`).
 
-### Building for Production
-
-To create a production build:
+### Production build
 
 ```bash
 npm run build
-# or
-yarn build
 ```
 
-The built files will be in the `dist` directory.
+Output is written to the `dist` directory.
 
-## Deployment
+## Deployment (GitHub Pages)
 
-The project is configured for GitHub Pages deployment. To deploy:
+The Vite `base` is set for GitHub Pages under the `teetuner-style-site` repository name. Deploy:
 
 ```bash
 npm run deploy
-# or
-yarn deploy
 ```
 
-## Project Structure
+## Project structure
 
 ```
-vesta-buildworks/
+teetuner-style-site/
+├── public/            # Static files (e.g. favicon)
 ├── src/
-│   ├── assets/        # Logo files and other assets
-│   ├── components/    # Reusable UI components
-│   ├── sections/      # Main content sections
-│   └── pages/         # Page components
-├── public/            # Static files
-└── ...config files
+│   ├── assets/
+│   │   └── teetuner/  # TeeTuner SVG brand assets
+│   ├── components/
+│   ├── sections/
+│   └── pages/
+└── …config files
 ```
 
 ## License
 
-This project is private and proprietary to Vesta Buildworks.
+Proprietary. All rights reserved by TeeTuner.
 
 ## Contact
 
-For questions or support, please contact the Vesta Buildworks team.
+For questions about the brand system, contact the TeeTuner team.
