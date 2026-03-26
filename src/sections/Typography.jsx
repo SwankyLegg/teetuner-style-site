@@ -1,9 +1,15 @@
 import React from 'react';
-import GetFont from '../components/GetFont';
 import { Section, SectionStack } from '../components/Section';
 import { fontFamilyDownloads } from '../data/fontDownloads';
 
+const zipBtnClass =
+  'inline-flex items-center justify-center rounded-md border border-primary bg-primary px-4 py-2 text-small font-medium text-white hover:bg-primary-dark transition-colors';
+const googleBtnClass =
+  'inline-flex items-center justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-small font-medium text-gray-800 hover:bg-gray-50 transition-colors';
+
 const Typography = () => {
+  const alegreyaMeta = fontFamilyDownloads.find((f) => f.name === 'Alegreya');
+  const oswaldMeta = fontFamilyDownloads.find((f) => f.name === 'Oswald');
   return (
     <Section>
       <div className="container mx-auto px-4">
@@ -63,13 +69,10 @@ const Typography = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-white p-8 rounded-lg shadow-md">
-              <div className="flex justify-between items-center mb-4 gap-4">
-                <h3 className="text-h3 font-alegreya">Alegreya</h3>
-                <GetFont fontName="Alegreya" />
-              </div>
+            <div className="bg-white p-8 rounded-lg shadow-md flex flex-col h-full">
+              <h3 className="text-h3 font-alegreya mb-4">Alegreya</h3>
               <p className="text-lead mb-6 text-gray-600">Primary serif typeface</p>
-              <div className="space-y-4">
+              <div className="space-y-4 flex-1">
                 <p className="font-alegreya font-normal">Regular (400) — Alegreya Regular</p>
                 <p className="font-alegreya font-normal italic">Regular italic (400) — Alegreya Italic</p>
                 <p className="font-alegreya font-medium">Medium (500) — Alegreya Medium</p>
@@ -78,15 +81,30 @@ const Typography = () => {
                 <p className="font-alegreya font-extrabold">Extrabold (800) — Alegreya Extrabold</p>
                 <p className="font-alegreya font-black">Black (900) — Alegreya Black</p>
               </div>
+              {alegreyaMeta && (
+                <div className="mt-8 pt-6 border-t border-gray-100 space-y-3">
+                  <p className="text-small text-gray-600">{alegreyaMeta.blurb}</p>
+                  <div className="flex flex-wrap gap-3">
+                    <a href={alegreyaMeta.zipUrl} download={alegreyaMeta.zipFile} className={zipBtnClass}>
+                      Download {alegreyaMeta.zipFile}
+                    </a>
+                    <a
+                      href={alegreyaMeta.googleFontsUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={googleBtnClass}
+                    >
+                      Open on Google Fonts
+                    </a>
+                  </div>
+                </div>
+              )}
             </div>
 
-            <div className="bg-white p-8 rounded-lg shadow-md">
-              <div className="flex justify-between items-center mb-4 gap-4">
-                <h3 className="text-h3 font-oswald tracking-tight uppercase">Oswald</h3>
-                <GetFont fontName="Oswald" />
-              </div>
+            <div className="bg-white p-8 rounded-lg shadow-md flex flex-col h-full">
+              <h3 className="text-h3 font-oswald tracking-tight uppercase mb-4">Oswald</h3>
               <p className="text-lead mb-6 text-gray-600">Condensed sans for display</p>
-              <div className="space-y-4">
+              <div className="space-y-4 flex-1">
                 <p className="font-oswald text-3xl font-extralight tracking-tight">ExtraLight (200)</p>
                 <p className="font-oswald text-2xl font-light tracking-tight">Light (300)</p>
                 <p className="font-oswald text-xl font-normal tracking-tight">Regular (400)</p>
@@ -98,46 +116,25 @@ const Typography = () => {
                   are in the repo under <code className="bg-gray-100 px-1 rounded">Oswald/static/</code>.
                 </p>
               </div>
-            </div>
-          </div>
-
-          <div className="bg-white p-6 rounded-lg shadow-md">
-            <h3 className="text-h3 mb-2">Download family archives</h3>
-            <p className="text-body text-gray-600 mb-6">
-              ZIPs mirror the Google Fonts download bundles in{' '}
-              <code className="text-small bg-gray-100 px-1 rounded">src/assets/fonts/</code>. Use the links for licensing
-              details and pairing suggestions on Google Fonts.
-            </p>
-            <ul className="space-y-6">
-              {fontFamilyDownloads.map(({ name, zipFile, zipUrl, googleFontsUrl, blurb }) => (
-                <li
-                  key={name}
-                  className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between border-b border-gray-100 pb-6 last:border-0 last:pb-0"
-                >
-                  <div>
-                    <h4 className="text-h5 text-primary">{name}</h4>
-                    <p className="text-small text-gray-600 mt-1">{blurb}</p>
-                  </div>
+              {oswaldMeta && (
+                <div className="mt-8 pt-6 border-t border-gray-100 space-y-3">
+                  <p className="text-small text-gray-600">{oswaldMeta.blurb}</p>
                   <div className="flex flex-wrap gap-3">
-                    <a
-                      href={zipUrl}
-                      download={zipFile}
-                      className="inline-flex items-center justify-center rounded-md border border-primary bg-primary px-4 py-2 text-small font-medium text-white hover:bg-primary-dark transition-colors"
-                    >
-                      Download {zipFile}
+                    <a href={oswaldMeta.zipUrl} download={oswaldMeta.zipFile} className={zipBtnClass}>
+                      Download {oswaldMeta.zipFile}
                     </a>
                     <a
-                      href={googleFontsUrl}
+                      href={oswaldMeta.googleFontsUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-small font-medium text-gray-800 hover:bg-gray-50 transition-colors"
+                      className={googleBtnClass}
                     >
                       Open on Google Fonts
                     </a>
                   </div>
-                </li>
-              ))}
-            </ul>
+                </div>
+              )}
+            </div>
           </div>
 
           <SectionStack>

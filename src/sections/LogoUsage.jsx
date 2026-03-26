@@ -10,26 +10,22 @@ const btnClass =
 export const LogoUsage = () => {
   return (
     <SectionStack>
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <h2 className="text-lg font-semibold">Wordmark</h2>
-        <div className="flex flex-wrap gap-2">
-          <a href={teeTunerWordmark} download="TeeTuner.svg" className={btnClass}>
+      <h2 className="text-lg font-semibold">Wordmark</h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="p-8 rounded-lg bg-white border border-gray-200 flex flex-col gap-4">
+          <h3 className="text-sm font-medium text-gray-500">Primary wordmark (light backgrounds)</h3>
+          <img src={teeTunerWordmark} alt="TeeTuner wordmark on light background" className="w-full h-auto" />
+          <a href={teeTunerWordmark} download="TeeTuner.svg" className={`${btnClass} self-start`}>
             Download primary wordmark
           </a>
-          <a href={teeTunerWordmarkWhite} download="TeeTuner_white.svg" className={btnClass}>
-            Download inverse wordmark
-          </a>
-        </div>
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="p-8 rounded-lg bg-white border border-gray-200">
-          <h3 className="text-sm font-medium text-gray-500 mb-4">Primary wordmark (light backgrounds)</h3>
-          <img src={teeTunerWordmark} alt="TeeTuner wordmark on light background" className="w-full h-auto" />
         </div>
 
-        <div className="p-8 rounded-lg bg-black">
-          <h3 className="text-sm font-medium text-gray-400 mb-4">Inverse wordmark (dark backgrounds)</h3>
+        <div className="p-8 rounded-lg bg-black flex flex-col gap-4">
+          <h3 className="text-sm font-medium text-gray-400">Inverse wordmark (dark backgrounds)</h3>
           <img src={teeTunerWordmarkWhite} alt="TeeTuner wordmark on dark background" className="w-full h-auto" />
+          <a href={teeTunerWordmarkWhite} download="TeeTuner_white.svg" className={`${btnClass} self-start`}>
+            Download inverse wordmark
+          </a>
         </div>
       </div>
 
@@ -54,12 +50,7 @@ export const LogoUsage = () => {
         </div>
       </div>
 
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <h2 className="text-lg font-semibold">Mark &amp; social avatar</h2>
-        <a href={teeTunerSocialMark} download="Social-TT.svg" className={btnClass}>
-          Download mark
-        </a>
-      </div>
+      <h2 className="text-lg font-semibold">Mark &amp; social avatar</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="p-8 rounded-lg bg-white border border-gray-200 flex items-center justify-center">
           <h3 className="sr-only">Full-color mark on white</h3>
@@ -75,6 +66,11 @@ export const LogoUsage = () => {
           <h3 className="sr-only">Mark on dark background</h3>
           <img src={teeTunerSocialMark} alt="TeeTuner social mark on black" className="w-full max-w-[200px] h-auto" />
         </div>
+      </div>
+      <div>
+        <a href={teeTunerSocialMark} download="Social-TT.svg" className={btnClass}>
+          Download mark
+        </a>
       </div>
 
       <div className="bg-white p-6 rounded-lg shadow-md">
