@@ -1,6 +1,18 @@
 import React from 'react';
 import { Card, CardContent } from './ui/card';
 
+function isLightHex(hex) {
+  if (!hex || typeof hex !== 'string') return false;
+  const normalized = hex.replace('#', '');
+  if (normalized.length !== 6) return false;
+  const n = parseInt(normalized, 16);
+  const r = (n >> 16) & 255;
+  const g = (n >> 8) & 255;
+  const b = n & 255;
+  const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+  return luminance > 0.88;
+}
+
 const ColorCard = ({ color }) => {
   const [copied, setCopied] = React.useState(false);
   const [copiedValue, setCopiedValue] = React.useState('');
@@ -15,11 +27,15 @@ const ColorCard = ({ color }) => {
     }, 2000);
   };
 
+  const lightSwatch = isLightHex(color.hex);
+
   return (
     <Card className="overflow-hidden">
       <button
         onClick={() => copyToClipboard(color.hex, 'HEX')}
-        className="w-full h-32 relative focus:outline-none focus:ring-2 focus:ring-primary focus:ring-inset"
+        className={`w-full h-32 relative focus:outline-none focus:ring-2 focus:ring-primary focus:ring-inset ${
+          lightSwatch ? 'ring-1 ring-inset ring-gray-200' : ''
+        }`}
         style={{ backgroundColor: color.hex }}
       >
         {copied && (
@@ -30,10 +46,10 @@ const ColorCard = ({ color }) => {
       </button>
       <CardContent className="p-4 pt-4">
         <div className="space-y-2">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between gap-2">
             <span className="text-body font-medium">{color.name}</span>
             <code
-              className="text-body cursor-pointer hover:text-primary"
+              className="text-body cursor-pointer hover:text-primary shrink-0"
               onClick={() => copyToClipboard(color.hex, 'HEX')}
             >
               {color.hex}
@@ -58,4 +74,4 @@ const ColorCard = ({ color }) => {
   );
 };
 
-export default ColorCard; 
+export default ColorCard;

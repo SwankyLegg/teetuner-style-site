@@ -7,8 +7,8 @@ export const ColorSystem = () => (
     <div>
       <h2 className="text-h2">Color System</h2>
       <p className="text-lead text-gray-600 mt-2">
-        TeeTuner colors center on signature green from the mark, balanced with neutral grayscale for interfaces,
-        typography, and layouts across product and marketing.
+        TeeTuner uses a forest-and-accent palette (Forest Dark through Bright Green), cool slate and red for system
+        states, and a twelve-step gray ramp—with documented light and dark theme pairings.
       </p>
     </div>
 

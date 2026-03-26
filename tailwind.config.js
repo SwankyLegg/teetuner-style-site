@@ -8,8 +8,33 @@ export default {
     extend: {
       colors: {
         primary: {
-          DEFAULT: '#1D4934',
-          dark: '#163828',
+          DEFAULT: '#0A2B26',
+          dark: '#172C47',
+        },
+        accent: {
+          DEFAULT: '#46C162',
+          muted: '#346845',
+        },
+        brand: {
+          'forest-dark': '#0A2B26',
+          navy: '#172C47',
+          'forest-medium': '#1E493A',
+          'forest-light': '#346845',
+          'bright-green': '#46C162',
+          slate: '#707D88',
+          red: '#ED3E49',
+        },
+        gray: {
+          50: '#FAFBFC',
+          100: '#F1F3F4',
+          200: '#CDD2D7',
+          300: '#A9B1BA',
+          400: '#85909D',
+          500: '#677080',
+          600: '#515963',
+          700: '#3A4046',
+          800: '#252A2E',
+          900: '#161A1D',
         },
       },
       fontFamily: {
@@ -37,4 +62,4 @@ export default {
     },
   },
   plugins: [],
-} 
+}
