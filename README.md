@@ -2,9 +2,7 @@
 
 A modern, interactive web application that serves as the central hub for TeeTuner brand assets and guidelines. Built with React and Vite, it provides easy access to logos, typography, color palettes, and usage notes.
 
-Update the live URL below after you publish to GitHub Pages (or another host).
-
-**View live site:** `https://<your-username>.github.io/teetuner-style-site/`
+**Live site:** [https://swankylegg.github.io/teetuner-style-site/](https://swankylegg.github.io/teetuner-style-site/)
 
 ## Features
 
@@ -56,7 +54,24 @@ Output is written to the `dist` directory.
 
 ## Deployment (GitHub Pages)
 
-The Vite `base` is set for GitHub Pages under the `teetuner-style-site` repository name. Deploy:
+Site URL: **https://swankylegg.github.io/teetuner-style-site/**  
+(`vite.config.js` uses `base: '/teetuner-style-site/'` to match the repo name.)
+
+### One-time repo settings
+
+1. On GitHub: **Settings → Pages**.
+2. Under **Build and deployment**, set **Source** to **Deploy from a branch**.
+3. Choose branch **`gh-pages`**, folder **`/ (root)`**, then save.
+
+After the first successful deploy, the site appears at the URL above (often within a minute).
+
+### Automatic deploy (recommended)
+
+Pushes to **`main`** or **`master`** run [`.github/workflows/deploy-gh-pages.yml`](.github/workflows/deploy-gh-pages.yml): it runs `npm ci`, `npm run build`, and updates the **`gh-pages`** branch with `dist/`.
+
+### Manual deploy from your machine
+
+Requires push access and a configured `origin` remote:
 
 ```bash
 npm run deploy
