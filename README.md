@@ -84,6 +84,7 @@ teetuner-style-site/
 ├── public/            # Static files (e.g. favicon)
 ├── src/
 │   ├── assets/
+│   │   ├── fonts/     # Alegreya & Oswald (ZIPs + expanded folders); web uses Google Fonts
 │   │   └── teetuner/  # TeeTuner SVG brand assets
 │   ├── components/
 │   ├── sections/

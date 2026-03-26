@@ -13,8 +13,8 @@ export default {
         },
       },
       fontFamily: {
-        'merriweather': ['Merriweather', 'serif'],
-        'merriweather-sans': ['Merriweather Sans', 'sans-serif'],
+        alegreya: ['Alegreya', 'serif'],
+        oswald: ['Oswald', 'sans-serif'],
       },
       fontSize: {
         'display': ['4rem', { lineHeight: '1.2', fontWeight: '700' }],      // 64px - Hero/Display text
